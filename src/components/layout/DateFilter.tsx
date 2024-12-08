@@ -9,7 +9,7 @@ interface DateFilterProps {
 export function DateFilter({ selectedDate, onDateChange }: DateFilterProps) {
   return (
     <div className="bg-white p-4 rounded-lg shadow-md flex items-center gap-4 mx-auto mb-8 w-1/2 justify-center">
-      <label className="block text-sm font-medium text-gray-700 ">
+      <label className="block text-sm font-medium text-gray-700  ">
         Filter by Date
       </label>
       <input

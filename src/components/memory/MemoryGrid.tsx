@@ -2,7 +2,7 @@ import React from 'react';
 import type { Memory } from '../../types';
 import { filterMemoriesByDate } from '../../utils/memory';
 import { MemoryCard } from './MemoryCard';
-
+import { FlipWordsDemo as HeaderTitle} from "../HeaderTitle";
 interface MemoryGridProps {
   memories: Memory[];
   onMemoryClick: (memory: Memory) => void;
@@ -14,9 +14,11 @@ export function MemoryGrid({ memories, onMemoryClick, selectedDate }: MemoryGrid
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-center text-pink-600 font-bold text-2xl mb-6">
+      {/* <h2 className="text-center text-pink-600 font-bold text-2xl mb-6">
         Cherished Moments Together ❤️
-      </h2>
+      </h2> */}
+
+      <HeaderTitle/>
       <div className="flex flex-col ">
         {filteredMemories.map((memory, index) => (
           <div

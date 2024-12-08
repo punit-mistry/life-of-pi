@@ -36,7 +36,6 @@ function App() {
           onMemoryClick={setSelectedMemory}
           selectedDate={selectedDate}
         />
-        {selectedMemory}
         {selectedMemory && (
           <MemoryViewer
             memory={selectedMemory}
