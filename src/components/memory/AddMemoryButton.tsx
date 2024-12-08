@@ -29,14 +29,13 @@ export function AddMemoryButton({ onUpload }: AddMemoryButtonProps) {
             Form to add a new memory with an image, description, and date
           </Dialog.Description>
           <MemoryUploader onUpload={(memory) => {
-            onUpload(memory);
             const closeEvent = new Event('close-dialog');
             document.dispatchEvent(closeEvent);
+            onUpload(memory);
           }} />
           <Dialog.Close asChild>
             <button
-              className="absolute -top-12 right-0 text-white hover:text-pink-300 transition-colors"
-              aria-label="Close"
+              className="absolute top-3 right-11 text-black hover:text-pink-300 transition-colors"aria-label="Close"
             >
               <X className="w-6 h-6" />
             </button>

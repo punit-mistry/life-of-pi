@@ -6,24 +6,32 @@ interface MemoryUploaderProps {
 }
 
 export function MemoryUploader({ onUpload }: MemoryUploaderProps) {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
+  const [error, setError] = useState('');
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        onUpload({
-          imageUrl: reader.result as string,
-          description,
-          date,
-        });
-        setDescription('');
-        setDate('');
+        setImageUrl(reader.result as string);
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleSubmit = () => {
+    if (!imageUrl || !description || !date) {
+      setError('All fields are required. Please upload an image, enter a description, and select a date.');
+      return;
+    }
+    setError('');
+    onUpload({ imageUrl, description, date });
+    setImageUrl(null);
+    setDescription('');
+    setDate('');
   };
 
   return (
@@ -70,6 +78,15 @@ export function MemoryUploader({ onUpload }: MemoryUploaderProps) {
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400"
           />
         </div>
+        {error && (
+          <p className="text-red-500 text-sm mt-2">{error}</p>
+        )}
+        <button
+          onClick={handleSubmit}
+          className="w-full px-4 py-2 bg-pink-500 text-white font-semibold rounded-md hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        >
+          Upload Memory
+        </button>
       </div>
     </div>
   );
