@@ -40,7 +40,7 @@ export function MemoryUploader({ onUpload }: MemoryUploaderProps) {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto mb-8">
+    <div className="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto mb-8 w-full">
       <h2 className="text-xl font-semibold text-pink-600 mb-4">Add a Memory</h2>
       <div className="space-y-4">
         <div>

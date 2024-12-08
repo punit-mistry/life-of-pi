@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import  { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import type { MemoryViewerProps } from '../types';
 
@@ -9,7 +9,7 @@ const ROMANTIC_SONGS = [
 ];
 
 export function MemoryViewer({ memory, onClose }: MemoryViewerProps) {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isAudioLoaded, setIsAudioLoaded] = useState(false);
 
   useEffect(() => {
@@ -59,7 +59,9 @@ export function MemoryViewer({ memory, onClose }: MemoryViewerProps) {
       aria-modal="true"
       aria-labelledby="memory-viewer-title"
     >
-      <audio ref={audioRef} />
+    {audioRef?.current && (
+        <audio ref={audioRef} />
+      )}
       <div className="relative max-w-4xl w-full mx-4">
         <button
           onClick={onClose}
