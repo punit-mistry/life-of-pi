@@ -11,7 +11,6 @@ interface MemoryGridProps {
 
 export function MemoryGrid({ memories, onMemoryClick, selectedDate }: MemoryGridProps) {
   const filteredMemories = filterMemoriesByDate(memories, selectedDate);
-
   return (
     <div className="container mx-auto px-4 py-8">
       {/* <h2 className="text-center text-pink-600 font-bold text-2xl mb-6">
@@ -23,7 +22,7 @@ export function MemoryGrid({ memories, onMemoryClick, selectedDate }: MemoryGrid
         {filteredMemories.map((memory, index) => (
           <div
             key={memory.id}
-            className={`bg-gradient-to-br from-pink-100 to-white rounded-lg  shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
+            className={`bg-gradient-to-br from-pink-100 to-white rounded-lg  shadow-lg hover:shadow-xl transition-all duration-300 transform ${
               index % 2 === 0 ? 'mt-8' : 'mt-16'
             }`}
           >

@@ -1,4 +1,3 @@
-import React from 'react';
 // import * as Dialog from '@radix-ui/react-dialog';
 import { Plus, Heart,} from 'lucide-react';
 import { MemoryUploader } from './MemoryUploader';

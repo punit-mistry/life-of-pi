@@ -3,6 +3,7 @@ export interface Memory {
   imageUrl: string;
   description: string;
   date: string;
+  imageID : string;
 }
 
 export interface MemoryViewerProps {

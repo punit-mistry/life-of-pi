@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { X, Heart, Infinity } from "lucide-react";
 import type { MemoryViewerProps } from "../../types";
 import { useAudio } from "../../hooks/useAudio";
 import { formatDate } from "../../utils/date";
-
+import supabase from "@/db";
 export function MemoryViewer({ memory, onClose }: MemoryViewerProps) {
   const { audioRef } = useAudio();
 
@@ -20,6 +20,14 @@ export function MemoryViewer({ memory, onClose }: MemoryViewerProps) {
     };
   }, [onClose]);
 
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  useEffect(() => {
+    const { data } = supabase
+  .storage
+  .from('bday_images')
+  .getPublicUrl(memory.image_id)
+    setImageUrl(data.publicUrl)
+  },[])
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
@@ -41,16 +49,17 @@ export function MemoryViewer({ memory, onClose }: MemoryViewerProps) {
           <div className="p-4 font-bold italic  flex  items-center">
             <Heart className="w-4 h-4 text-pink-500 mr-2 " />
             <div className="flex gap-2 items-center">
-              Love You Mootu EveryDay from 9/10/2022 to
+              Love You Mootu EveryDay from 9/10/2021 to
               <Infinity className=" text-pink-500 " />
             </div>
           </div>
           <div className="p-5 max-w-[450px] mx-auto ">
-            <img
-              src={memory.imageUrl}
+            {imageUrl && <img
+              src={imageUrl}
               alt={memory.description}
               className="w-full h-full object-cover" // Use object-cover to maintain aspect ratio
             />
+}
           </div>
           <div className="p-6">
             <h2 id="memory-viewer-title" className="sr-only">
@@ -59,7 +68,7 @@ export function MemoryViewer({ memory, onClose }: MemoryViewerProps) {
             <b>Description:</b>
             <p className="text-gray-700 mb-2">{memory.description}</p>
             <b>Date:</b>
-            <p className="text-sm text-gray-500">{formatDate(memory.date)}</p>
+            <p className="text-sm text-gray-500">{formatDate(memory.memory_date)}</p>
           </div>
         </div>
       </div>
